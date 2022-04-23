@@ -27,18 +27,24 @@ $(document).ready(function () {
       const length = places.length;
       for (let i = 0; i < length; i++) {
         $('section.places').append(`<article>
-	  <h2>${places[i].name}</h2></article>`);
+	<h2>${places[i].name}</h2></article>`);
       }
     }
   });
   $('button').click(function () {
-	  $.ajax({
-		  url: 'http://0.0.0.0:5001/api/v1/places_search/',
-		  type: 'POST',
-		  data: '{}',
-		  contentType: 'application/json',
-		  dataType: 'json',
-		  success:
-	  });
+    $.ajax({
+      url: 'http://0.0.0.0:5001/api/v1/places_search/',
+      type: 'POST',
+      data: '{}',
+      contentType: 'application/json',
+      dataType: 'json',
+      success: function (places) {
+        const length = places.length;
+        for (let i = 0; i < length; i++) {
+          $('section.places').append(`<article>
+          <h2>${places[i].name}</h2></article>`);
+        }
+      }
+    });
   });
 });
